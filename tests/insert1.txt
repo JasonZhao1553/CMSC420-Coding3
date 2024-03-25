@@ -1,0 +1,8 @@
+initialize,2,3
+insert,10,A
+insert,11,A
+insert,12,A
+insert,13,A
+insert,14,A
+insert,15,A
+dump

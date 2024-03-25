@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "test_insert",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_scapegoat.py",
+            "args": [
+                "-tf",
+                "./tests/insert1.txt",
+                ">",
+                "./tests-results/insert1-results.txt"
+            ]
+        }
+    ]
+}
