@@ -81,6 +81,8 @@ class SGtree():
     
         # TODO backtrack / propogate. Check through the tree for scapegaots
         self.n += 1
+        self.m = max(self.m, self.n)
+
         #print(f"depth: {depth}; log: {math.log(self.n, self.b / self.a)}")
         if depth > math.log(self.n, self.b / self.a):
             self.trigger_scapegoat_insert(new_node)
@@ -164,11 +166,43 @@ class SGtree():
     def insert(self, key: int, value: str):
         alpha = self.b / self.a
         self.insert_into_tree(key, value)
-        # Fill in the details.
 
     def delete(self, key: int):
-        # Fill in the details.
-        print(f'Delete: {key}') # This is just here to make the code run, you can delete it.
+        self.delete_from_tree(self.root, key)
+        self.n -= 1
+
+        if (self.a / self.b * self.m > self.n):
+            self.restructure(self.root)
+            self.m = self.n
+    
+    def delete_from_tree(self, root, key: int):
+        if root is None:
+            return None
+
+        if key < root.key:
+            root.leftchild = self.delete_from_tree(root.leftchild, key)
+        elif key > root.key:
+            root.rightchild = self.delete_from_tree(root.rightchild, key)
+        else:
+            if root.leftchild is None:
+                return root.rightchild
+            elif root.rightchild is None:
+                return root.leftchild
+
+            # Find the inorder successor
+            successor = root.rightchild
+            while successor.leftchild is not None:
+                successor = successor.leftchild
+
+            # Copy the successor's data to the root
+            root.key = successor.key
+            root.value = successor.value
+
+            # Delete the successor
+            root.rightchild = self.delete_from_tree(root.rightchild, successor.key)
+
+        return root
+    
 
     def search(self, search_key: int) -> str:
         # Fill in and tweak the return.
