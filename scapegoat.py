@@ -82,7 +82,7 @@ class SGtree():
         self.n += 1
         self.m = max(self.m, self.n)
 
-        print(f"depth: {depth}; log: {math.log(self.n, self.b / self.a)}")
+        #print(f"depth: {depth}; log: {math.log(self.n, self.b / self.a)}")
         if depth > math.log(self.n, self.b / self.a):
             self.trigger_scapegoat_insert(new_node)
 
