@@ -81,6 +81,7 @@ class SGtree():
     
         # TODO backtrack / propogate. Check through the tree for scapegaots
         self.n += 1
+        print(f"depth: {depth} log {math.log(self.n, self.b / self.a)}")
         if depth > math.log(self.n, self.b / self.a):
             self.trigger_scapegoat_insert(new_node)
 
@@ -111,9 +112,12 @@ class SGtree():
         
         elif root_parent.key > root.key:
             root_parent.leftchild = restructured_tree
+            restructured_tree.parent = root_parent
         
         else:
             root_parent.rightchild = restructured_tree
+            restructured_tree.parent = root_parent
+        
         
     def restructure_helper(self, inorder):
         if len(inorder) == 0:
