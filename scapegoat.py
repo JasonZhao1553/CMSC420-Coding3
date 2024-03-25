@@ -194,4 +194,4 @@ class SGtree():
             return []
         
         value_list = getList(self.root, [])[::-1]
-        return value_list
+        return json.dumps(value_list)
