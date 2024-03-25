@@ -1,0 +1,12 @@
+initialize,7,10
+insert,50,OHCVB
+insert,93,IKP7W
+delete,50
+insert,34,LH2YC
+insert,4,ESAQP
+insert,24,ZMMDP
+insert,62,9D492
+insert,25,4KN0C
+insert,49,C9NCY
+insert,44,QU1B4
+dump

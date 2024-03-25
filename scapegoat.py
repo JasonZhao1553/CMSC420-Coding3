@@ -53,7 +53,6 @@ class SGtree():
         return json.dumps(dict_repr,indent=2)
     
     def insert_into_tree(self, key, value):
-        alpha = self.b / self.a 
         curr = self.root
         depth = 0
 
@@ -83,7 +82,7 @@ class SGtree():
         self.n += 1
         self.m = max(self.m, self.n)
 
-        #print(f"depth: {depth}; log: {math.log(self.n, self.b / self.a)}")
+        print(f"depth: {depth}; log: {math.log(self.n, self.b / self.a)}")
         if depth > math.log(self.n, self.b / self.a):
             self.trigger_scapegoat_insert(new_node)
 
@@ -168,7 +167,7 @@ class SGtree():
         self.insert_into_tree(key, value)
 
     def delete(self, key: int):
-        self.delete_from_tree(self.root, key)
+        self.root = self.delete_from_tree(self.root, key)
         self.n -= 1
 
         if (self.a / self.b * self.m > self.n):
@@ -185,8 +184,12 @@ class SGtree():
             root.rightchild = self.delete_from_tree(root.rightchild, key)
         else:
             if root.leftchild is None:
+                if root.rightchild:
+                    root.rightchild.parent = root.parent
                 return root.rightchild
             elif root.rightchild is None:
+                if root.leftchild:
+                    root.leftchild.parent = root.parent
                 return root.leftchild
 
             # Find the inorder successor
