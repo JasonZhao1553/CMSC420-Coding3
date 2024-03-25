@@ -81,7 +81,6 @@ class SGtree():
     
         # TODO backtrack / propogate. Check through the tree for scapegaots
         self.n += 1
-        print(f"depth: {depth} log {math.log(self.n, self.b / self.a)}")
         if depth > math.log(self.n, self.b / self.a):
             self.trigger_scapegoat_insert(new_node)
 
